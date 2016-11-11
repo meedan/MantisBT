@@ -14,3 +14,9 @@
 	path = library/securimage
 	url = https://github.com/mantisbt/securimage.git
 	branch = mantis
+[submodule "plugins/Lightbox"]
+	path = plugins/Lightbox
+	url = git@github.com:infojunkie/MantisBT-Lightbox.git
+[submodule "plugins/Slack"]
+	path = plugins/Slack
+	url = git@github.com:infojunkie/MantisBT-Slack.git
