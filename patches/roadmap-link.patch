@@ -1,0 +1,31 @@
+diff --git a/bug_view_inc.php b/bug_view_inc.php
+index 84a1381..2a89cfe 100644
+--- a/bug_view_inc.php
++++ b/bug_view_inc.php
+@@ -580,7 +580,7 @@ if( $t_show_product_version || $t_show_product_build ) {
+ 	# Product Version
+ 	if( $t_show_product_version ) {
+ 		echo '<th class="bug-product-version category">', lang_get( 'product_version' ), '</th>';
+-		echo '<td class="bug-product-version">', $t_product_version_string, '</td>';
++		echo '<td class="bug-product-version"><a href="/roadmap_page.php?version_id=', version_get_id( $t_bug->version, $t_bug->project_id ) ,'">', $t_product_version_string, '</a></td>';
+ 	} else {
+ 		$t_spacer += 2;
+ 	}
+@@ -612,7 +612,7 @@ if( $t_show_target_version || $t_show_fixed_in_version ) {
+ 	if( $t_show_target_version ) {
+ 		# Target Version
+ 		echo '<th class="bug-target-version category">', lang_get( 'target_version' ), '</th>';
+-		echo '<td class="bug-target-version">', $t_target_version_string, '</td>';
++		echo '<td class="bug-target-version"><a href="/roadmap_page.php?version_id=', version_get_id( $t_bug->target_version, $t_bug->project_id ) ,'">', $t_target_version_string, '</a></td>';
+ 	} else {
+ 		$t_spacer += 2;
+ 	}
+@@ -620,7 +620,7 @@ if( $t_show_target_version || $t_show_fixed_in_version ) {
+ 	# fixed in version
+ 	if( $t_show_fixed_in_version ) {
+ 		echo '<th class="bug-fixed-in-version category">', lang_get( 'fixed_in_version' ), '</th>';
+-		echo '<td class="bug-fixed-in-version">', $t_fixed_in_version_string, '</td>';
++		echo '<td class="bug-fixed-in-version"><a href="/roadmap_page.php?version_id=', version_get_id( $t_bug->fixed_in_version, $t_bug->project_id ) ,'">', $t_fixed_in_version_string, '</a></td>';
+ 	} else {
+ 		$t_spacer += 2;
+ 	}
