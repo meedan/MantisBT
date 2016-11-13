@@ -1,0 +1,22 @@
+version: '2'
+services:
+  mysql:
+    image: mysql:latest
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=mantis
+      - MYSQL_USER=mantis
+      - MYSQL_PASSWORD=mantis
+    ports:
+      - 3306:3306
+    volumes:
+      - ./config/mysql:/etc/mysql/conf.d
+
+  mantis:
+    build: ./
+    ports:
+      - 80:80
+    volumes:
+      - .:/var/www/html
+    links:
+      - mysql
