@@ -299,6 +299,7 @@ if( $t_multiple_projects ) {
 					print_project_option_list( null, false );
 					break;
 				case 'ASSIGN':
+					echo '<option value="0"></option>';
 					print_assign_to_option_list( 0, $t_project_id );
 					break;
 				case 'RESOLVE':

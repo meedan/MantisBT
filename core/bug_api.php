@@ -569,7 +569,7 @@ class BugData {
 
 		$t_mentioned_user_ids = mention_get_users( $this->summary );
 		$t_all_mentioned_user_ids = array_merge( $t_all_mentioned_user_ids, $t_mentioned_user_ids );
-		
+
 		$t_mentioned_user_ids = mention_get_users( $this->description );
 		$t_all_mentioned_user_ids = array_merge( $t_all_mentioned_user_ids, $t_mentioned_user_ids );
 
@@ -2173,6 +2173,7 @@ function bug_get_status_for_assign( $p_current_handler, $p_new_handler, $p_curre
 	}
 	if( config_get( 'auto_set_status_to_assigned' ) ) {
 		$t_assigned_status = config_get( 'bug_assigned_status' );
+		$t_submit_status = config_get( 'bug_submit_status' );
 
 		if(		$p_current_handler == NO_USER &&
 				$p_new_handler != NO_USER &&
@@ -2181,6 +2182,15 @@ function bug_get_status_for_assign( $p_current_handler, $p_new_handler, $p_curre
 				bug_check_workflow( $p_current_status, $t_assigned_status ) ) {
 
 			return $t_assigned_status;
+		}
+
+		if(		$p_current_handler != NO_USER &&
+				$p_new_handler == NO_USER &&
+				$p_new_status == $p_current_status &&
+				$p_new_status <= $t_assigned_status &&
+				bug_check_workflow( $p_current_status, $t_submit_status ) ) {
+
+			return $t_submit_status;
 		}
 	}
 	return $p_new_status;

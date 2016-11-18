@@ -1,0 +1,64 @@
+diff --git a/bug_actiongroup.php b/bug_actiongroup.php
+index e6791d0..dbbd038 100644
+--- a/bug_actiongroup.php
++++ b/bug_actiongroup.php
+@@ -156,7 +156,7 @@ foreach( $f_bug_arr as $t_bug_id ) {
+ 			#  that current user has rights to assign the issue
+ 			$t_threshold = access_get_status_threshold( $t_assign_status, $t_bug->project_id );
+ 			if( access_has_bug_level( config_get( 'update_bug_assign_threshold', config_get( 'update_bug_threshold' ) ), $t_bug_id ) ) {
+-				if( access_has_bug_level( config_get( 'handle_bug_threshold' ), $t_bug_id, $f_assign ) ) {
++				if( $f_assign == NO_USER || access_has_bug_level( config_get( 'handle_bug_threshold' ), $t_bug_id, $f_assign ) ) {
+ 					if( bug_check_workflow( $t_status, $t_assign_status ) ) {
+ 						# @todo we need to issue a helper_call_custom_function( 'issue_update_validate', array( $t_bug_id, $t_bug_data, $f_bugnote_text ) );
+ 						bug_assign( $t_bug_id, $f_assign, $f_bug_notetext, $f_bug_noteprivate );
+diff --git a/bug_actiongroup_page.php b/bug_actiongroup_page.php
+index 01fca3e..30d4976 100644
+--- a/bug_actiongroup_page.php
++++ b/bug_actiongroup_page.php
+@@ -299,6 +299,7 @@ if( $t_multiple_projects ) {
+ 					print_project_option_list( null, false );
+ 					break;
+ 				case 'ASSIGN':
++					echo '<option value="0"></option>';
+ 					print_assign_to_option_list( 0, $t_project_id );
+ 					break;
+ 				case 'RESOLVE':
+diff --git a/core/bug_api.php b/core/bug_api.php
+index 5186d86..443e041 100644
+--- a/core/bug_api.php
++++ b/core/bug_api.php
+@@ -569,7 +569,7 @@ class BugData {
+ 
+ 		$t_mentioned_user_ids = mention_get_users( $this->summary );
+ 		$t_all_mentioned_user_ids = array_merge( $t_all_mentioned_user_ids, $t_mentioned_user_ids );
+-		
++
+ 		$t_mentioned_user_ids = mention_get_users( $this->description );
+ 		$t_all_mentioned_user_ids = array_merge( $t_all_mentioned_user_ids, $t_mentioned_user_ids );
+ 
+@@ -2173,6 +2173,7 @@ function bug_get_status_for_assign( $p_current_handler, $p_new_handler, $p_curre
+ 	}
+ 	if( config_get( 'auto_set_status_to_assigned' ) ) {
+ 		$t_assigned_status = config_get( 'bug_assigned_status' );
++		$t_submit_status = config_get( 'bug_submit_status' );
+ 
+ 		if(		$p_current_handler == NO_USER &&
+ 				$p_new_handler != NO_USER &&
+@@ -2182,6 +2183,15 @@ function bug_get_status_for_assign( $p_current_handler, $p_new_handler, $p_curre
+ 
+ 			return $t_assigned_status;
+ 		}
++
++		if(		$p_current_handler != NO_USER &&
++				$p_new_handler == NO_USER &&
++				$p_new_status == $p_current_status &&
++				$p_new_status <= $t_assigned_status &&
++				bug_check_workflow( $p_current_status, $t_submit_status ) ) {
++
++			return $t_submit_status;
++		}
+ 	}
+ 	return $p_new_status;
+-}
+\ No newline at end of file
++}
