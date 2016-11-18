@@ -20,3 +20,7 @@
 [submodule "plugins/Slack"]
 	path = plugins/Slack
 	url = git@github.com:infojunkie/MantisBT-Slack.git
+[submodule "plugins/source-integration"]
+	path = plugins/source-integration
+	url = git@github.com:mantisbt-plugins/source-integration.git
+	branch = modern-ui

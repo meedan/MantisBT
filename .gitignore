@@ -22,14 +22,13 @@ docbook/*/tmp
 build/
 
 # Untracked plugins
-plugins/*
+#plugins/*
 !plugins/MantisCoreFormatting
 !plugins/MantisGraph
 !plugins/XmlImportExport
 !plugins/Gravatar
 !plugins/Slack
 !plugins/Lightbox
-!plugins/jquery
 
 # IDE/Editor temporary files
 *~
