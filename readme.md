@@ -4,6 +4,16 @@ Mantis Bug Tracker (MantisBT)
 [![Build Status](https://img.shields.io/travis/mantisbt/mantisbt/master.svg)](https://travis-ci.org/mantisbt/mantisbt)
 [![Gitter](https://img.shields.io/gitter/room/mantisbt/mantisbt.svg)](https://gitter.im/mantisbt/mantisbt?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
+Meedan-Specific Fork
+--------------------
+
+Added the following features to the original repo:
+
+- Patches for modified functionality (see `patches/`)
+- Meedan-specific configuration (see `config/`)
+- Plugins that Meedan uses (see `plugins/`)
+- Docker Compose file for easy development (see `Dockerfile` and `docker-compose.yml`)
+
 Screenshots
 -----------
 
