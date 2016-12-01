@@ -20,5 +20,7 @@
   $g_logo_image = 'images/meedan.png';
   $g_favicon_image = 'images/meedan.ico';
 
+  $g_view_summary_threshold = REPORTER;
+
   include_once('config_inc.local.php');
 ?>
