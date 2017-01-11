@@ -42,6 +42,9 @@ build/
 *.kdev4
 nbproject/
 
+# MacOS
+.DS_Store
+
 # IIS7
 web.config
 !library/securimage/web.config

@@ -209,14 +209,24 @@ $(document).ready( function() {
 		$('input[type=button].stopwatch_toggle').val(translations['time_tracking_stopwatch_start']);
 	});
 
-	$('input[type=text].datetime').each(function(index, element) {
-		$(this).after('&nbsp;<i class="fa fa-calendar fa-lg datetime" id="' + element.id + '_datetime_button' + '"></i>');
-		Calendar.setup({
-			inputField: element.id,
-			timeFormat: 24,
-			showsTime: true,
-			ifFormat: config['calendar_js_date_format'],
-			button: element.id + '_datetime_button'
+	$('input[type=text].datetimepicker').each(function(index, element) {
+		$(this).datetimepicker({
+			locale: $(this).data('picker-locale'),
+			format: $(this).data('picker-format'),
+			useCurrent: false,
+			icons: {
+				time: 'fa fa-clock-o',
+				date: 'fa fa-calendar',
+				up: 'fa fa-chevron-up',
+				down: 'fa fa-chevron-down',
+				previous: 'fa fa-chevron-left',
+				next: 'fa fa-chevron-right',
+				today: 'fa fa-arrows ',
+				clear: 'fa fa-trash',
+				close: 'fa fa-times'
+			}
+		}).next().on(ace.click_event, function() {
+			$(this).prev().focus();
 		});
 	});
 
@@ -471,29 +481,31 @@ function toggleDisplay(idTag)
 Dropzone.autoDiscover = false;
 function enableDropzone( classPrefix, autoUpload ) {
 	try {
-		var zone = new Dropzone( "." + classPrefix + "-form", {
-			forceFallback: $(this).data('force-fallback'),
+		var formClass = "." + classPrefix + "-form";
+		var form = $( formClass );
+		var zone = new Dropzone( formClass, {
+			forceFallback: form.data('force-fallback'),
 			paramName: "ufile",
 			autoProcessQueue: autoUpload,
 			clickable: '.' + classPrefix,
 			previewsContainer: '#' + classPrefix + '-previews-box',
 			uploadMultiple: true,
 			parallelUploads: 100,
-			maxFilesize: $(this).data('max-filesize'),
+			maxFilesize: form.data('max-filesize'),
 			addRemoveLinks: !autoUpload,
-			acceptedFiles: $(this).data('accepted-files'),
+			acceptedFiles: form.data('accepted-files'),
 			previewTemplate: "<div class=\"dz-preview dz-file-preview\">\n  <div class=\"dz-details\">\n    <div class=\"dz-filename\"><span data-dz-name></span></div>\n    <div class=\"dz-size\" data-dz-size></div>\n    <img data-dz-thumbnail />\n  </div>\n  <div class=\"progress progress-small progress-striped active\"><div class=\"progress-bar progress-bar-success\" data-dz-uploadprogress></div></div>\n  <div class=\"dz-success-mark\"><span></span></div>\n  <div class=\"dz-error-mark\"><span></span></div>\n  <div class=\"dz-error-message\"><span data-dz-errormessage></span></div>\n</div>",
-			dictDefaultMessage: $(this).data('default-message'),
-			dictFallbackMessage: $(this).data('fallback-message'),
-			dictFallbackText: $(this).data('fallback-text'),
-			dictFileTooBig: $(this).data('file-too-big'),
-			dictInvalidFileType: $(this).data('invalid-file-type'),
-			dictResponseError: $(this).data('response-error'),
-			dictCancelUpload: $(this).data('cancel-upload'),
-			dictCancelUploadConfirmation: $(this).data('cancel-upload-confirmation'),
-			dictRemoveFile: $(this).data('remove-file'),
-			dictRemoveFileConfirmation: $(this).data('remove-file-confirmation'),
-			dictMaxFilesExceeded: $(this).data('max-files-exceeded'),
+			dictDefaultMessage: form.data('default-message'),
+			dictFallbackMessage: form.data('fallback-message'),
+			dictFallbackText: form.data('fallback-text'),
+			dictFileTooBig: form.data('file-too-big'),
+			dictInvalidFileType: form.data('invalid-file-type'),
+			dictResponseError: form.data('response-error'),
+			dictCancelUpload: form.data('cancel-upload'),
+			dictCancelUploadConfirmation: form.data('cancel-upload-confirmation'),
+			dictRemoveFile: form.data('remove-file'),
+			dictRemoveFileConfirmation: form.data('remove-file-confirmation'),
+			dictMaxFilesExceeded: form.data('max-files-exceeded'),
 
 			init: function () {
 				var dropzone = this;
@@ -517,6 +529,6 @@ function enableDropzone( classPrefix, autoUpload ) {
 			}
 		});
 	} catch (e) {
-		alert( $(this).data('dropzone-not-supported') );
+		alert( form.data('dropzone-not-supported') );
 	}
 }

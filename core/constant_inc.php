@@ -21,7 +21,7 @@
 /**
  * Mantis Version
  */
-define( 'MANTIS_VERSION', '2.0.0-rc.2' );
+define( 'MANTIS_VERSION', '2.0.0' );
 define( 'FILTER_VERSION', 'v9' );
 
 # --- constants -------------------
@@ -41,9 +41,10 @@ define( 'PHP_CGI', 1 );
 # installation
 define( 'CONFIGURED_PASSWORD', '______' );
 define( 'DB_MIN_VERSION_ADODB', '5.20.2' );  # For mssql, oracle and pgsql
-define( 'DB_MIN_VERSION_MSSQL', '9.0.0' );
-define( 'DB_MIN_VERSION_MYSQL', '5.0.8' );   # See #16584
-define( 'DB_MIN_VERSION_PGSQL', '9.0' );     # Earliest supported version as of August 2014
+define( 'DB_MIN_VERSION_MSSQL', '11.0.0' );  # MS SQL Server 2012
+define( 'DB_MIN_VERSION_MYSQL', '5.5.35' );  # See #20431
+define( 'DB_MIN_VERSION_PGSQL', '9.2' );     # Earliest supported version as of Nov 2016
+define( 'DB_MIN_VERSION_ORACLE', '11.2' );
 
 # error types
 define( 'ERROR', E_USER_ERROR );
@@ -606,20 +607,26 @@ define( 'ERROR_FTP_CONNECT_ERROR', 16 );            # N/A
 
 # JQuery and JQuery UI
 # hashes acquired with command 'cat file.js | openssl dgst -sha256 -binary | openssl enc -base64 -A'
-define ( 'JQUERY_VERSION', '2.2.4' );
-define ( 'JQUERY_HASH', 'sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=' );
-define ( 'JQUERY_UI_VERSION', '1.11.4' );
-define ( 'JQUERY_UI_HASH', 'sha256-xNjb53/rY+WmG+4L6tTl9m6PpqknWZvRt0rO1SRnJzw=' );
+define( 'JQUERY_VERSION', '2.2.4' );
+define( 'JQUERY_HASH', 'sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=' );
+define( 'JQUERY_UI_VERSION', '1.11.4' );
+define( 'JQUERY_UI_HASH', 'sha256-xNjb53/rY+WmG+4L6tTl9m6PpqknWZvRt0rO1SRnJzw=' );
 
 # Bootstrap & FontAwesome
-define ( 'BOOTSTRAP_VERSION', '3.3.6' );
-define ( 'BOOTSTRAP_HASH', 'sha256-KXn5puMvxCw+dAYznun+drMdG1IFl3agK0p/pqT9KAo=' );
-define ( 'FONT_AWESOME_VERSION', '4.6.3' );
+define( 'BOOTSTRAP_VERSION', '3.3.6' );
+define( 'BOOTSTRAP_HASH', 'sha256-KXn5puMvxCw+dAYznun+drMdG1IFl3agK0p/pqT9KAo=' );
+define( 'FONT_AWESOME_VERSION', '4.6.3' );
+
+# Moment & DateTimePicker
+define( 'MOMENT_VERSION', '2.15.2' );
+define( 'MOMENT_HASH', 'sha256-K+AZsAFjiBd4piqBmFzaxDsiQiHfREubm1ExNGW1JIA=' );
+define( 'DATETIME_PICKER_VERSION', '4.17.43' );
+define( 'DATETIME_PICKER_HASH', 'sha256-I8vGZkA2jL0PptxyJBvewDVqNXcgIhcgeqi+GD/aw34=' );
 
 # Chart JS
-define ( 'CHARTJS_VERSION', '2.1.6' );
-define ( 'CHARTJS_HASH', 'sha256-Emd9qupGNNjtRpaQjhpA4hn+PWAETkO2GB3gzBL3thM=' );
-define ( 'CHARTJSBUNDLE_HASH', 'sha256-OBi9RJU9sFk/2JEV23eSQSqe/eUK4km5NxGgo/XMiqY=' );
+define( 'CHARTJS_VERSION', '2.1.6' );
+define( 'CHARTJS_HASH', 'sha256-Emd9qupGNNjtRpaQjhpA4hn+PWAETkO2GB3gzBL3thM=' );
+define( 'CHARTJSBUNDLE_HASH', 'sha256-OBi9RJU9sFk/2JEV23eSQSqe/eUK4km5NxGgo/XMiqY=' );
 
 # Byte Order Markers
 define( 'UTF8_BOM', "\xEF\xBB\xBF" );

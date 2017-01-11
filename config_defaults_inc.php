@@ -1116,44 +1116,37 @@ $g_long_process_timeout = 0;
 ##########################
 
 /**
- * date format strings defaults to ISO 8601 formatting
- * go to http://www.php.net/manual/en/function.date.php
- * for detailed instructions on date formatting
+ * Date format strings defaults to ISO 8601 formatting.
+ * For detailed instructions on date formatting
+ * @see http://www.php.net/manual/en/function.date.php
  * @global string $g_short_date_format
  */
 $g_short_date_format = 'Y-m-d';
 
 /**
- * date format strings defaults to ISO 8601 formatting
- * go to http://www.php.net/manual/en/function.date.php
- * for detailed instructions on date formatting
+ * Date format strings defaults to ISO 8601 formatting.
+ * For detailed instructions on date formatting
+ * @see http://www.php.net/manual/en/function.date.php
  * @global string $g_normal_date_format
  */
 $g_normal_date_format = 'Y-m-d H:i';
 
 /**
- * date format strings defaults to ISO 8601 formatting
- * go to http://www.php.net/manual/en/function.date.php
- * for detailed instructions on date formatting
+ * Date format strings defaults to ISO 8601 formatting.
+ * For detailed instructions on date formatting
+ * @see http://www.php.net/manual/en/function.date.php
  * @global string $g_complete_date_format
  */
 $g_complete_date_format = 'Y-m-d H:i T';
 
 /**
- * jscalendar date format string
- * go to http://www.php.net/manual/en/function.date.php
- * for detailed instructions on date formatting
- * @global string $g_calendar_js_date_format
+ * Datetime picker widget format string.
+ * For detailed instructions on date formatting
+ * @see http://momentjs.com/docs/#/displaying/format/
+ * @global string $g_datetime_picker_format
  */
-$g_calendar_js_date_format = '\%Y-\%m-\%d \%H:\%M';
+$g_datetime_picker_format = 'Y-MM-DD HH:mm';
 
-/**
- * jscalendar date format string
- * go to http://www.php.net/manual/en/function.date.php
- * for detailed instructions on date formatting
- * @global string $g_calendar_date_format
- */
-$g_calendar_date_format = 'Y-m-d H:i';
 
 ##############################
 # MantisBT TimeZone Settings #
@@ -2766,6 +2759,12 @@ $g_update_readonly_bug_threshold = MANAGER;
 $g_view_changelog_threshold = VIEWER;
 
 /**
+* threshold for viewing timeline
+* @global integer $g_timeline_view_threshold
+*/
+$g_timeline_view_threshold = VIEWER;
+
+/**
  * threshold for viewing roadmap
  * @global integer $g_roadmap_view_threshold
  */
@@ -4276,8 +4275,7 @@ $g_public_config_names = array(
 	'bugnote_user_change_view_state_threshold',
 	'bugnote_user_delete_threshold',
 	'bugnote_user_edit_threshold',
-	'calendar_date_format',
-	'calendar_js_date_format',
+	'datetime_picker_format',
 	'cdn_enabled',
 	'change_view_status_threshold',
 	'check_mx_record',
@@ -4526,6 +4524,7 @@ $g_public_config_names = array(
 	'time_tracking_view_threshold',
 	'time_tracking_with_billing',
 	'time_tracking_without_note',
+	'timeline_view_threshold',
 	'top_include_page',
 	'update_bug_assign_threshold',
 	'update_bug_status_threshold',
