@@ -14,6 +14,11 @@ Added the following features to the original repo:
 - Plugins that Meedan uses (see `plugins/`)
 - Docker Compose file for easy development (see `Dockerfile` and `docker-compose.yml`)
 
+Some common tasks:
+- Build the app: `docker-compose build`
+- Run the app: `docker-compose run`
+- Load a database dump: `mysql --protocol tcp -umantis -pmantis mantis < mantis-20170110.sql` (assuming you have a local `mysql` client)
+
 Screenshots
 -----------
 
