@@ -24,3 +24,6 @@
 	path = plugins/source-integration
 	url = git@github.com:mantisbt-plugins/source-integration.git
 	branch = modern-ui
+[submodule "MantisBT-Weeks"]
+	path = plugins/Weeks
+	url = git@github.com:infojunkie/MantisBT-Weeks.git
