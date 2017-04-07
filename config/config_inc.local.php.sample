@@ -6,5 +6,6 @@ $g_db_username   = 'mantis';
 $g_db_password   = 'mantis';
 $g_database_name = 'mantis';
 $g_db_type       = 'mysqli';
+$g_db_table_suffix = 'mantis';
 
 $g_crypto_master_salt = 'hellothisisasalt';

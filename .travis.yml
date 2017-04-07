@@ -8,6 +8,10 @@ language: php
 # Environment setup and test scripts execution
 #
 
+before_install:
+  # If PHP >= 7.0, force use of PHPunit 5.7
+  - if php -r "exit( (int)! version_compare( '$TRAVIS_PHP_VERSION', '7.0', '>=' ) );"; then mkdir ~/bin && wget -O ~/bin/phpunit https://phar.phpunit.de/phpunit-5.7.phar && chmod +x ~/bin/phpunit; fi
+
 before_script:
   - ./scripts/travis_before_script.sh
 
@@ -19,19 +23,14 @@ script:
 #
 
 php:
-  - 5.3
-  - 5.4
   - 5.5
   - 5.6
   - 7.0
+  - 7.1
 
 env:
   - DB=mysql
   - DB=pgsql
-
-branches:
-  except:
-    - master-2.0.x
 
 matrix:
   include:

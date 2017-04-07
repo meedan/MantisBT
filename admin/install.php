@@ -338,12 +338,6 @@ print_test( 'Checking if safe mode is enabled for install script',
 	}
 ?>
 
-</table>
-</div>
-</div>
-</div>
-</div>
-</div>
 <?php
 	if( false == $g_failed ) {
 		$t_install_state++;
@@ -355,13 +349,6 @@ if( 2 == $t_install_state ) {
 	# By now user has picked a timezone, ensure it is set
 	date_default_timezone_set( $f_timezone );
 ?>
-
-<div class="col-md-12 col-xs-12">
-<div class="widget-box widget-color-blue2">
-<div class="widget-body">
-<div class="widget-main no-padding">
-<div class="table-responsive">
-<table class="table table-bordered table-condensed">
 
 <!-- Checking DB support-->
 <?php
@@ -421,6 +408,9 @@ if( 2 == $t_install_state ) {
 	$t_result = @$g_db->Connect( $f_hostname, $f_admin_username, $f_admin_password );
 
 	if( $t_result ) {
+		# due to a bug in ADODB, this call prompts warnings, hence the @
+		# the check only works on mysql if the database is open
+		$t_version_info = @$g_db->ServerInfo();
 
 		# check if db exists for the admin
 		$t_result = @$g_db->Connect( $f_hostname, $f_admin_username, $f_admin_password, $f_database_name );
@@ -428,9 +418,8 @@ if( 2 == $t_install_state ) {
 			$t_db_open = true;
 			$f_db_exists = true;
 		}
-		# due to a bug in ADODB, this call prompts warnings, hence the @
-		# the check only works on mysql if the database is open
-		$t_version_info = @$g_db->ServerInfo();
+
+		print_test_result( GOOD );
 	} else {
 		print_test_result( BAD, true, 'Does administrative user have access to the database? ( ' . db_error_msg() . ' )' );
 		$t_version_info = null;
@@ -450,6 +439,7 @@ if( 2 == $t_install_state ) {
 
 		if( $t_result == true ) {
 			$t_db_open = true;
+			print_test_result( GOOD );
 		} else {
 			print_test_result( BAD, false, 'Database user doesn\'t have access to the database ( ' . db_error_msg() . ' )' );
 		}
@@ -478,13 +468,13 @@ if( 2 == $t_install_state ) {
 			case 'mysql':
 			case 'mysqli':
 				if( version_compare( $t_version_info['version'], DB_MIN_VERSION_MYSQL, '<' ) ) {
-					$t_error = 'MySQL ' . DB_MIN_VERSION_MYSQL . ' or later is required for installation.';
+					$t_error = 'MySQL ' . DB_MIN_VERSION_MYSQL . ' or later is required for installation';
 				}
 				break;
 			case 'mssql':
 			case 'mssqlnative':
 				if( version_compare( $t_version_info['version'], DB_MIN_VERSION_MSSQL, '<' ) ) {
-					$t_error = 'SQL Server 2005 (' . DB_MIN_VERSION_MSSQL . ') or later is required for installation.';
+					$t_error = 'SQL Server (' . DB_MIN_VERSION_MSSQL . ') or later is required for installation';
 				}
 				break;
 			case 'pgsql':
@@ -579,7 +569,6 @@ if( !$g_database_upgrade ) {
 			$t_db_list = array(
 				'mysqli'      => 'MySQL Improved',
 				'mysql'       => 'MySQL',
-				'mssql'       => 'Microsoft SQL Server',
 				'mssqlnative' => 'Microsoft SQL Server Native Driver',
 				'pgsql'       => 'PostgreSQL',
 				'oci8'        => 'Oracle',
@@ -587,10 +576,6 @@ if( !$g_database_upgrade ) {
 			# mysql is deprecated as of PHP 5.5.0
 			if( version_compare( phpversion(), '5.5.0' ) >= 0 ) {
 				unset( $t_db_list['mysql']);
-			}
-			# mssql is not supported with PHP >= 5.3
-			if( version_compare( phpversion(), '5.3' ) >= 0 ) {
-				unset( $t_db_list['mssql']);
 			}
 
 			foreach( $t_db_list as $t_db => $t_db_descr ) {
@@ -1207,10 +1192,6 @@ if( 6 == $t_install_state ) {
 <div class="widget-main no-padding">
 <div class="table-responsive">
 <table class="table table-bordered table-condensed">
-
-
-<!-- Checking register_globals are off -->
-<?php print_test( 'Checking for register_globals are off for mantis', !ini_get_bool( 'register_globals' ), false, 'change php.ini to disable register_globals setting' )?>
 
 <tr>
 	<td>

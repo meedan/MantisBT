@@ -357,8 +357,8 @@ if( $t_show_attachments ) {
 		<td>
 			<?php echo '<input ' . helper_get_tab_index() . ' type="text" id="due_date" name="due_date" class="datetimepicker input-sm" ' .
 				'data-picker-locale="' . lang_get_current_datetime_locale() .
-				'" data-picker-format="' . config_get( 'datetime_picker_format' ) . '" ' .
-				'size="20" maxlength="16" value="' . $t_date_to_display . '" />' ?>
+				'" data-picker-format="' . convert_date_format_to_momentjs( config_get( 'normal_date_format' ) ) . '" ' .
+				'size="16" maxlength="20" value="' . $t_date_to_display . '" />' ?>
 			<i class="fa fa-calendar fa-xlg datetimepicker"></i>
 		</td>
 	</tr>
@@ -389,7 +389,7 @@ if( $t_show_attachments ) {
 						</select>
 						<?php
 							} else {
-								echo '<input type="text" id="platform" name="platform" class="autocomplete input-sm" size="32" maxlength="32" tabindex="' . helper_get_tab_index_value() . '" value="' . string_attribute( $f_platform ) . '" />';
+								echo '<input type="text" id="platform" name="platform" class="typeahead input-sm" autocomplete = "off" size="32" maxlength="32" tabindex="' . helper_get_tab_index_value() . '" value="' . string_attribute( $f_platform ) . '" />';
 							}
 						?>
 					</td>
@@ -406,7 +406,7 @@ if( $t_show_attachments ) {
 						</select>
 						<?php
 							} else {
-								echo '<input type="text" id="os" name="os" class="autocomplete input-sm" size="32" maxlength="32" tabindex="' . helper_get_tab_index_value() . '" value="' . string_attribute( $f_os ) . '" />';
+								echo '<input type="text" id="os" name="os" class="typeahead input-sm" autocomplete = "off" size="32" maxlength="32" tabindex="' . helper_get_tab_index_value() . '" value="' . string_attribute( $f_os ) . '" />';
 							}
 						?>
 					</td>
@@ -425,7 +425,7 @@ if( $t_show_attachments ) {
 							</select>
 						<?php
 							} else {
-								echo '<input type="text" id="os_build" name="os_build" class="autocomplete input-sm" size="16" maxlength="16" tabindex="' . helper_get_tab_index_value() . '" value="' . string_attribute( $f_os_build ) . '" />';
+								echo '<input type="text" id="os_build" name="os_build" class="typeahead input-sm" autocomplete = "off" size="16" maxlength="16" tabindex="' . helper_get_tab_index_value() . '" value="' . string_attribute( $f_os_build ) . '" />';
 							}
 						?>
 					</td>

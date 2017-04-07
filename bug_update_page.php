@@ -269,13 +269,13 @@ if( $t_show_id || $t_show_project || $t_show_category || $t_show_view_state || $
 }
 
 #
-# Reporter
+# Reporter, Assigned To, Due Date
 #
 
-if( $t_show_reporter ) {
+if( $t_show_reporter || $t_show_handler || $t_show_due_date ) {
 	echo '<tr>';
 
-	$t_spacer = 4;
+	$t_spacer = 0;
 
 	if( $t_show_reporter ) {
 		# Reporter
@@ -285,7 +285,7 @@ if( $t_show_reporter ) {
 		# Do not allow the bug's reporter to edit the Reporter field
 		# when limit_reporters is ON
 		if( ON == config_get( 'limit_reporters' )
-		&&  !access_has_project_level( access_threshold_min_level( config_get( 'report_bug_threshold', null, null, $t_bug->project_id ) ) + 1, $t_bug->project_id )
+			&&  !access_has_project_level( access_threshold_min_level( config_get( 'report_bug_threshold', null, null, $t_bug->project_id ) ) + 1, $t_bug->project_id )
 		) {
 			echo string_attribute( user_get_name( $t_bug->reporter_id ) );
 		} else {
@@ -302,21 +302,6 @@ if( $t_show_reporter ) {
 	} else {
 		$t_spacer += 2;
 	}
-
-	# spacer
-	echo '<td colspan="', $t_spacer, '">&#160;</td>';
-
-	echo '</tr>';
-}
-
-#
-# Assigned To, Due Date
-#
-
-if( $t_show_handler || $t_show_due_date ) {
-	echo '<tr>';
-
-	$t_spacer = 0;
 
 	if ( $t_show_handler ) {
 		# Assigned To
@@ -354,8 +339,9 @@ if( $t_show_handler || $t_show_due_date ) {
 				$t_date_to_display = date( config_get( 'normal_date_format' ), $t_bug->due_date );
 			}
 			echo '<input ' . helper_get_tab_index() . ' type="text" id="due_date" name="due_date" class="datetimepicker input-sm" size="16" ' .
-				'data-picker-locale="' . lang_get_current_datetime_locale() .  '" data-picker-format="' . config_get( 'datetime_picker_format' ) . '" ' .
-				'" maxlength="16" value="' . $t_date_to_display . '" />';
+				'data-picker-locale="' . lang_get_current_datetime_locale() .
+                '" data-picker-format="' . convert_date_format_to_momentjs( config_get( 'normal_date_format' ) ) .
+				'" maxlength="20" value="' . $t_date_to_display . '" />';
 			echo '<i class="fa fa-calendar fa-xlg datetimepicker"></i>';
 		} else {
 			if( !date_is_null( $t_bug->due_date ) ) {
@@ -519,7 +505,7 @@ if( $t_show_platform || $t_show_os || $t_show_os_version ) {
 			print_platform_option_list( $t_bug->platform );
 			echo '</select>';
 		} else {
-			echo '<input type="text" id="platform" name="platform" class="autocomplete input-sm" size="16" maxlength="32" tabindex="' . helper_get_tab_index_value() . '" value="' . string_attribute( $t_bug->platform ) . '" />';
+			echo '<input type="text" id="platform" name="platform" class="typeahead input-sm" autocomplete = "off" size="16" maxlength="32" tabindex="' . helper_get_tab_index_value() . '" value="' . string_attribute( $t_bug->platform ) . '" />';
 		}
 
 		echo '</td>';
@@ -537,7 +523,7 @@ if( $t_show_platform || $t_show_os || $t_show_os_version ) {
 			print_os_option_list( $t_bug->os );
 			echo '</select>';
 		} else {
-			echo '<input type="text" id="os" name="os" class="autocomplete input-sm" size="16" maxlength="32" tabindex="' . helper_get_tab_index_value() . '" value="' . string_attribute( $t_bug->os ) . '" />';
+			echo '<input type="text" id="os" name="os" class="typeahead input-sm" autocomplete = "off" size="16" maxlength="32" tabindex="' . helper_get_tab_index_value() . '" value="' . string_attribute( $t_bug->os ) . '" />';
 		}
 
 		echo '</td>';
@@ -555,7 +541,7 @@ if( $t_show_platform || $t_show_os || $t_show_os_version ) {
 			print_os_build_option_list( $t_bug->os_build );
 			echo '</select>';
 		} else {
-			echo '<input type="text" id="os_build" name="os_build" class="autocomplete input-sm" size="16" maxlength="16" tabindex="' . helper_get_tab_index_value() . '" value="' . string_attribute( $t_bug->os_build ) . '" />';
+			echo '<input type="text" id="os_build" name="os_build" class="typeahead input-sm" autocomplete = "off" size="16" maxlength="16" tabindex="' . helper_get_tab_index_value() . '" value="' . string_attribute( $t_bug->os_build ) . '" />';
 		}
 
 		echo '</td>';

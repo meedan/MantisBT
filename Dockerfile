@@ -10,6 +10,8 @@ RUN set -xe \
 
 RUN set -xe \
     && ln -sf /usr/share/zoneinfo/America/Vancouver /etc/localtime \
-    && echo 'date.timezone = "America/Vancouver"' > /usr/local/etc/php/php.ini
+    && touch /usr/local/etc/php/conf.d/mantis.ini \
+    && echo 'date.timezone = "America/Vancouver"' >> /usr/local/etc/php/conf.d/mantis.ini \
+    && echo 'log_errors = 1' >> /usr/local/etc/php/conf.d/mantis.ini
 
 COPY ./ /var/www/html

@@ -8,6 +8,90 @@
 	<simpara>
 		<revhistory>
 			<revision>
+				<revnumber>2.3-1</revnumber>
+				<date>Fri Mar 31 2017</date>
+				<author>
+					<firstname>Victor</firstname>
+					<surname>Boctor</surname>
+					<email>vboctor@mantisbt.org</email>
+				</author>
+				<revdescription>
+					<simplelist>
+						<member>Release 2.3.0</member>
+					</simplelist>
+				</revdescription>
+			</revision>
+			<revision>
+				<revnumber>2.2-3</revnumber>
+				<date>Wed Mar 22 2017</date>
+				<author>
+					<firstname>Damien</firstname>
+					<surname>Regad</surname>
+					<email>dregad@mantisbt.org</email>
+				</author>
+				<revdescription>
+					<simplelist>
+						<member>Release 2.2.2</member>
+					</simplelist>
+				</revdescription>
+			</revision>
+			<revision>
+				<revnumber>2.2-2</revnumber>
+				<date>Sun Mar 12 2017</date>
+				<author>
+					<firstname>Victor</firstname>
+					<surname>Boctor</surname>
+					<email>vboctor@mantisbt.org</email>
+				</author>
+				<revdescription>
+					<simplelist>
+						<member>Release 2.2.1</member>
+					</simplelist>
+				</revdescription>
+			</revision>
+			<revision>
+				<revnumber>2.2-1</revnumber>
+				<date>Sun Feb 26 2017</date>
+				<author>
+					<firstname>Victor</firstname>
+					<surname>Boctor</surname>
+					<email>vboctor@mantisbt.org</email>
+				</author>
+				<revdescription>
+					<simplelist>
+						<member>Release 2.2.0</member>
+					</simplelist>
+				</revdescription>
+			</revision>
+			<revision>
+				<revnumber>2.1-2</revnumber>
+				<date>Sun Feb 26 2017</date>
+				<author>
+					<firstname>Victor</firstname>
+					<surname>Boctor</surname>
+					<email>vboctor@mantisbt.org</email>
+				</author>
+				<revdescription>
+					<simplelist>
+						<member>Release 2.1.1</member>
+					</simplelist>
+				</revdescription>
+			</revision>
+			<revision>
+				<revnumber>2.1-1</revnumber>
+				<date>Tue Jan 31 2017</date>
+				<author>
+					<firstname>Victor</firstname>
+					<surname>Boctor</surname>
+					<email>vboctor@mantisbt.org</email>
+				</author>
+				<revdescription>
+					<simplelist>
+						<member>Release 2.1.0</member>
+					</simplelist>
+				</revdescription>
+			</revision>
+			<revision>
 				<revnumber>2.0-2</revnumber>
 				<date>Fri Dec 30 2016</date>
 				<author>

@@ -503,6 +503,17 @@ function helper_project_specific_where( $p_project_id, $p_user_id = null ) {
 function helper_get_columns_to_view( $p_columns_target = COLUMNS_TARGET_VIEW_PAGE, $p_viewable_only = true, $p_user_id = null ) {
 	$t_columns = helper_call_custom_function( 'get_columns_to_view', array( $p_columns_target, $p_user_id ) );
 
+	# Fix column names for custom field columns that may be stored as lowercase in configuration. See issue #17367
+	# If the system was working fine with lowercase names, then database is case-insensitive, eg: mysql
+	# Fix by forcing a search with current name to get the id, then get the actual name by looking up this id
+	foreach( $t_columns as &$t_column_name ) {
+		$t_cf_name = column_get_custom_field_name( $t_column_name );
+		if( $t_cf_name ) {
+			$t_cf_id = custom_field_get_id_from_name( $t_cf_name );
+			$t_column_name = column_get_custom_field_column_name( $t_cf_id );
+		}
+	}
+
 	if( !$p_viewable_only ) {
 		return $t_columns;
 	}
@@ -605,7 +616,14 @@ function helper_mantis_url( $p_url ) {
 	if( is_blank( $p_url ) ) {
 		return $p_url;
 	}
-	return config_get_global( 'short_path' ) . $p_url;
+
+	# Return URL as-is if it already starts with short path
+	$t_short_path = config_get_global( 'short_path' );
+	if( strpos( $p_url, $t_short_path ) === 0 ) {
+		return $p_url;
+	}
+
+	return $t_short_path . $p_url;
 }
 
 /**
@@ -670,3 +688,20 @@ function helper_duration_to_minutes( $p_hhmm ) {
 function shutdown_functions_register() {
 	register_shutdown_function( 'email_shutdown_function' );
 }
+
+/**
+ * Filter a set of strings by finding strings that start with a case-insensitive prefix.
+ * @param array  $p_set    An array of strings to search through.
+ * @param string $p_prefix The prefix to filter by.
+ * @return array An array of strings which match the supplied prefix.
+ */
+function helper_filter_by_prefix( array $p_set, $p_prefix ) {
+	$t_matches = array();
+	foreach ( $p_set as $p_item ) {
+		if( utf8_strtolower( utf8_substr( $p_item, 0, utf8_strlen( $p_prefix ) ) ) === utf8_strtolower( $p_prefix ) ) {
+			$t_matches[] = $p_item;
+		}
+	}
+	return $t_matches;
+}
+
