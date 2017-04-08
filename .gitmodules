@@ -34,3 +34,6 @@
 [submodule "api/rest/swagger"]
 	path = api/rest/swagger
 	url = https://github.com/mantisbt/swagger-ui.git
+[submodule "plugins/jQuery-UI"]
+	path = plugins/jQuery-UI
+	url = git@github.com:mantisbt-plugins/jQuery-UI.git
