@@ -69,7 +69,7 @@ if( auth_is_user_authenticated() ) {
 
 $t_token_confirm_hash = token_get_value( TOKEN_ACCOUNT_ACTIVATION, $f_user_id );
 
-if( $f_confirm_hash != $t_token_confirm_hash ) {
+if( $t_token_confirm_hash == null || $f_confirm_hash !== $t_token_confirm_hash ) {
 	trigger_error( ERROR_LOST_PASSWORD_CONFIRM_HASH_INVALID, ERROR );
 }
 
@@ -159,7 +159,7 @@ layout_login_page_begin();
 						</label>
 						<span class="label-style"></span>
 					</div>
-					
+
 					<div class="field-container">
 						<label class="block clearfix">
 							<span class="block input-icon input-icon-right">
