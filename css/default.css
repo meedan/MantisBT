@@ -101,4 +101,8 @@ td.print-overdue    { font-weight: bold; }
 	tr.bugnote td.category { display: block; }
 	tr.bugnote td.category .pull-left { float: none!important; }
 	tr.bugnote td.category .btn-group-sm { display: flex; }
+	#bugnoteadd tbody { display: block; }
+	#bugnoteadd tbody tr { display: block; }
+	#bugnoteadd tbody th { display: block; width: 100%!important; }
+	#bugnoteadd tbody td { display: block; width: 100%!important; }
 }
