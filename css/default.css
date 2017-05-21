@@ -92,3 +92,13 @@ td.print-overdue    { font-weight: bold; }
 .table-nonfluid {
    width: auto !important;
 }
+
+/* mobile-friendly bugnotes */
+@media screen and (max-width: 767px) {
+	.bugnotes tbody { display: block; }
+	tr.bugnote { display: block; }
+	tr.bugnote td.bugnote-note { display: block; width: 100%; white-space: normal!important; }
+	tr.bugnote td.category { display: block; }
+	tr.bugnote td.category .pull-left { float: none!important; }
+	tr.bugnote td.category .btn-group-sm { display: flex; }
+}
