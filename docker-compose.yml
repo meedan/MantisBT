@@ -15,7 +15,7 @@ services:
   mantis:
     build: ./
     ports:
-      - 80:80
+      - 8080:80
     volumes:
       - .:/var/www/html
     links:
