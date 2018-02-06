@@ -18,7 +18,9 @@ Some common tasks:
 - Build the app: `docker-compose build`
 - Run the app: `docker-compose run`
 - Install Mantis for the first time: http://localhost:8080/admin/install.php (MySQL admin = `root` / `root`, Mantis admin = `administrator` / `root`)
-- Load a database dump: `mysql --protocol tcp -umantis -pmantis mantis < mantis-20170110.sql` (assuming you have a local `mysql` client)
+- Load a database dump from the host: `mysql --protocol tcp -umantis -pmantis mantis < mantis-20170110.sql` (assuming you have a local `mysql` client)
+
+What follows is the original documentation from the fork parent.
 
 Screenshots
 -----------
