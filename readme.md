@@ -15,6 +15,7 @@ Added the following features to the original repo:
 - Docker Compose file for easy development (see `Dockerfile` and `docker-compose.yml`)
 
 Some common tasks:
+- Set local configs on your localhost: `cp config/config_inc.local.php.sample config/config_inc.local.php`
 - Build the app: `docker-compose build`
 - Run the app: `docker-compose run`
 - Install Mantis for the first time: http://localhost:8080/admin/install.php (MySQL admin = `root` / `root`, Mantis admin = `administrator` / `root`)
