@@ -14,4 +14,5 @@ RUN set -xe \
     && echo 'date.timezone = "America/Vancouver"' >> /usr/local/etc/php/conf.d/mantis.ini \
     && echo 'log_errors = 1' >> /usr/local/etc/php/conf.d/mantis.ini
 
+COPY ./config/config_inc.local.php /var/www/html/config/config_inc.local.php
 COPY ./ /var/www/html
