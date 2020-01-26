@@ -216,6 +216,7 @@ function http_security_headers() {
 			http_csp_add( 'style-src', 'maxcdn.bootstrapcdn.com' );
 			http_csp_add( 'style-src', 'fonts.googleapis.com' );
 			http_csp_add( 'style-src', 'cdnjs.cloudflare.com' );
+			http_csp_add( 'style-src', 'ajax.cloudflare.com' );
 
 			http_csp_add( 'font-src', 'fonts.gstatic.com' );
 			http_csp_add( 'font-src', 'maxcdn.bootstrapcdn.com' );
@@ -223,6 +224,7 @@ function http_security_headers() {
 			http_csp_add( 'script-src', 'ajax.googleapis.com' );
 			http_csp_add( 'script-src', 'maxcdn.bootstrapcdn.com' );
 			http_csp_add( 'script-src', 'cdnjs.cloudflare.com' );
+			http_csp_add( 'script-src', 'ajax.cloudflare.com' );
 
 			http_csp_add( 'img-src', 'ajax.googleapis.com' );
 
