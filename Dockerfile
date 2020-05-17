@@ -12,7 +12,9 @@ RUN set -xe \
     && ln -sf /usr/share/zoneinfo/America/Vancouver /etc/localtime \
     && touch /usr/local/etc/php/conf.d/mantis.ini \
     && echo 'date.timezone = "America/Vancouver"' >> /usr/local/etc/php/conf.d/mantis.ini \
-    && echo 'log_errors = 1' >> /usr/local/etc/php/conf.d/mantis.ini
+    && echo 'log_errors = 1' >> /usr/local/etc/php/conf.d/mantis.ini \
+    && echo 'upload_max_filesize = 20M' >> /usr/local/etc/php/conf.d/mantis.ini \
+    && echo 'post_max_size = 21M' >> /usr/local/etc/php/conf.d/mantis.ini
 
 COPY ./config/config_inc.local.php /var/www/html/config/config_inc.local.php
 COPY ./ /var/www/html

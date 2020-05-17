@@ -16,6 +16,7 @@
   $g_allow_signup = OFF;
   $g_session_validation = OFF;
   $g_form_security_validation = OFF;
+  $g_max_file_size = 20000000;
 
   $g_window_title = 'Meedan Mantis';
   $g_logo_image = 'images/meedan.png';
