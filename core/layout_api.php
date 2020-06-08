@@ -218,7 +218,7 @@ function layout_admin_page_end() {
 	layout_body_javascript();
 
 	html_body_end();
-    html_end();
+		html_end();
 }
 
 
@@ -374,9 +374,9 @@ function layout_login_page_begin() {
 	# Advertise the availability of the browser search plug-ins.
 	echo "\t", '<link rel="search" type="application/opensearchdescription+xml" title="MantisBT: Text Search" href="' . string_sanitize_url( 'browser_search_plugin.php?type=text', true) . '" />' . "\n";
 	echo "\t", '<link rel="search" type="application/opensearchdescription+xml" title="MantisBT: Issue Id" href="' . string_sanitize_url( 'browser_search_plugin.php?type=id', true) . '" />' . "\n";
-	
+
 	html_head_javascript();
-	
+
 	event_signal( 'EVENT_LAYOUT_RESOURCES' );
 	html_head_end();
 
@@ -436,6 +436,8 @@ function layout_navbar() {
 	echo '<div class="navbar-buttons navbar-header navbar-collapse collapse">';
 	echo '<ul class="nav ace-nav">';
 	if (auth_is_user_authenticated()) {
+		# search bar
+		layout_navbar_search_bar();
 		# shortcuts button bar
 		layout_navbar_button_bar();
 		# projects dropdown menu
@@ -571,6 +573,22 @@ function layout_navbar_projects_menu() {
  * Print navbar bottons
  * @return null
  */
+function layout_navbar_search_bar() {
+	echo '<li class="hidden-sm hidden-xs">';
+		echo '<form method="post" id="navbar-search" action="view_all_set.php?f=3">';
+			echo '<input type="hidden" name="type" value="1" />';
+			echo '<input type="hidden" name="page_number" value="1" />';
+			echo '<div class="btn-group btn-corner padding-right-8 padding-left-8">';
+			echo '<input size="40" class="search form-control input-sm" name="search" placeholder="' . lang_get( 'search' ) . '" />';
+			echo '</div>';
+		echo '</form>';
+	echo '</li>';
+}
+
+/**
+ * Print navbar bottons
+ * @return null
+ */
 function layout_navbar_button_bar() {
 	if( !auth_is_user_authenticated() ) {
 		return;
@@ -584,14 +602,14 @@ function layout_navbar_button_bar() {
 	}
 
 	echo '<li class="hidden-sm hidden-xs">';
-  	echo '<div class="btn-group btn-corner padding-right-8 padding-left-8">';
+		echo '<div class="btn-group btn-corner padding-right-8 padding-left-8">';
 
-  	if( $t_can_report_bug ) {
+		if( $t_can_report_bug ) {
 		$t_bug_url = string_get_bug_report_url();
-	  	echo '<a class="btn btn-primary btn-sm" href="' . $t_bug_url . '">';
+			echo '<a class="btn btn-primary btn-sm" href="' . $t_bug_url . '">';
 		echo '<i class="fa fa-edit"></i> ' . lang_get( 'report_bug_link' );
 		echo '</a>';
-  	}
+		}
 
 	if( $t_can_invite_user ) {
 		echo '<a class="btn btn-primary btn-sm" href="manage_user_create_page.php">';
@@ -600,7 +618,7 @@ function layout_navbar_button_bar() {
 	}
 
 	echo '</div>';
-  	echo '</li>';
+		echo '</li>';
 }
 
 /**

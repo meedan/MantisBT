@@ -2494,7 +2494,7 @@ function filter_draw_selection_area2( $p_page_number, $p_for_screen = true, $p_e
 			<?php } ?>
 			<div id="filter-bar-search" class="widget-toolbar no-border" style="display: <?php echo $t_collapse_block ? 'block' : 'none' ?>">
 				<div class="widget-menu margin-left-8 margin-right-8">
-					<input id="filter-bar-search-txt" type="text" size="16" class="input-xs"
+					<input id="filter-bar-search-txt" type="text" size="40" class="input-xs"
 						   placeholder="<?php echo lang_get( 'search' ) ?>"
 						   value="<?php echo string_attribute( $t_filter[FILTER_PROPERTY_SEARCH] ); ?>" />
 					<button id="filter-bar-search-btn" type="submit" name="filter" class="btn btn-primary btn-white btn-round btn-xs"
@@ -2524,7 +2524,7 @@ function filter_draw_selection_area2( $p_page_number, $p_for_screen = true, $p_e
 
 	# expanded
 	echo '<div class="form-inline">';
-	echo '<input type="text" id="filter-search-txt" class="input-sm" size="16" name="', FILTER_PROPERTY_SEARCH, '"
+	echo '<input type="text" id="filter-search-txt" class="input-sm" size="40" name="', FILTER_PROPERTY_SEARCH, '"
 		placeholder="' . lang_get( 'search' ) . '" value="', string_attribute( $t_filter[FILTER_PROPERTY_SEARCH] ), '" />';
 	?>
 	<input type="submit" class="btn btn-primary btn-sm btn-white btn-round no-float" name="filter" value="<?php echo lang_get( 'filter_button' )?>" />

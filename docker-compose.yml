@@ -1,4 +1,6 @@
 version: '2'
+volumes:
+  mysql:
 services:
   mysql:
     image: mysql:5.6
@@ -11,7 +13,7 @@ services:
       - 3306:3306
     volumes:
       - ./config/mysql:/etc/mysql/conf.d
-
+      - mysql:/var/lib/mysql
   mantis:
     build: ./
     ports:
