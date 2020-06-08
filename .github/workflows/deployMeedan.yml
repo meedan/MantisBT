@@ -21,11 +21,13 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: ${{ secrets.AWS_DEFAULT_REGION }}
 
-    - name: Generate ECS task definition file
+    - name: Generate ECS task definition file and php config
       env: 
         task_definition: ${{ secrets.ECS_DEFINITION }}
+        php_config_inc: ${{ secrets.PHP_CONFIG_INC }}
       run: |
         echo $task_definition > ./task-definition
+        echo $php_config_inc > ./config/config_inc.local.php
 
     - name: Login to Amazon ECR
       id: login-ecr
