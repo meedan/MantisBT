@@ -580,6 +580,9 @@ function layout_navbar_search_bar() {
 			echo '<input type="hidden" name="page_number" value="1" />';
 			echo '<div class="btn-group btn-corner padding-right-8 padding-left-8">';
 			echo '<input size="40" class="search form-control input-sm" name="search" placeholder="' . lang_get( 'search' ) . '" />';
+			echo '<a id="navbar-search-button" class="btn btn-primary btn-sm" href="view_all_set.php?f=3" style="float:none">';
+			echo '<i class="fa fa-search"></i> ' . lang_get( 'search' );
+			echo '</a>';
 			echo '</div>';
 		echo '</form>';
 	echo '</li>';

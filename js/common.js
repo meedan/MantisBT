@@ -363,6 +363,11 @@ $(document).ready( function() {
 			$('tr[id=bugnote-attach-files]').show();
 		}
 	});
+
+	$('a#navbar-search-button').bind("click", function() {
+		$('form#navbar-search').submit();
+		return false;
+	});
 });
 
 function setBugLabel() {
