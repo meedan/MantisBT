@@ -26,7 +26,7 @@ jobs:
         task_definition: ${{ secrets.ECS_DEFINITION }}
         php_config_inc: ${{ secrets.PHP_CONFIG_INC }}
       run: |
-        echo $task_definition > ./task-definition
+        echo $task_definition > ./task-definition.json
         echo $php_config_inc > ./config/config_inc.local.php
 
     - name: Login to Amazon ECR
